@@ -15,6 +15,10 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.get('/', (req, res) => {
+    res.json({"message": "Hello. That is todo note api!"});
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extended: true} ));
 
