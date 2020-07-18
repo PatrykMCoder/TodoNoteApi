@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const registerRoutes = require('./app/routes/register.routes');
 const loginRoutes = require('./app/routes/login.routes');
-const config = require('./app/config/config.database');
 const configHeroku = require('./app/config-heroku/config.database');
 const port = process.env.PORT || 4000;
 
