@@ -21,6 +21,7 @@
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.25",
     "mongoosen": "^1.0.4",
+    "path": "^0.12.7",
     "v-response": "^1.1.0"
   },
   "bugs": {

@@ -5,7 +5,7 @@ const registerRoutes = require('./app/routes/register.routes');
 const loginRoutes = require('./app/routes/login.routes');
 const config = require('./app/config/config.database');
 const configHeroku = require('./app/config-heroku/config.database');
-const PORT = 4000;
+const port = process.env.PORT || 4000;
 
 app = express();
 
@@ -29,5 +29,5 @@ app.use(loginRoutes);
 mongoose.connect(configHeroku.url)
 .then('DB CONNECTED');
 
-app.listen(PORT, console.log('app start'));
+app.listen(port, console.log('app start on port ', port));
 
