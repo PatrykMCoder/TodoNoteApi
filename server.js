@@ -28,5 +28,5 @@ app.use(loginRoutes);
 mongoose.connect(config.url)
 .then('DB CONNECTED');
 
-app.listen(PORT, console.log('app start'));
+app.listen(PORT, config.url_server, console.log('app start'));
 

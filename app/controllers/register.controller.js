@@ -4,6 +4,7 @@ const bcrypt =  require('bcrypt');
 const vm =  require('v-response');
 
 exports.create_user = async(req, res, next) => {
+    console.log("start");
     await RegisterModel.findOne({email: req.body.email}).then(email_exist => {
         if(email_exist)
             res.status(409).json(false, 400, 'email existing');
@@ -23,5 +24,6 @@ exports.create_user = async(req, res, next) => {
                 });
             });
         });
+        console.log("Stop");
     });
 }

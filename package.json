@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PatrykMCoder/TodoNoteApi.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Patryk M",
   "license": "ISC",
@@ -14,8 +19,13 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
-    "mongoose": "^5.9.24",
+    "mongoose": "^5.9.25",
     "mongoosen": "^1.0.4",
     "v-response": "^1.1.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/PatrykMCoder/TodoNoteApi/issues"
+  },
+  "homepage": "https://github.com/PatrykMCoder/TodoNoteApi#readme",
+  "devDependencies": {}
 }
