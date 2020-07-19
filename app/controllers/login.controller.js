@@ -21,7 +21,8 @@ exports.login_user = (req, res, next) => {
                 jwt.sign(payload, "keys", {expiresIn: "365d"}, (err, token) => {
                     return res.status(200).json(true, 200, "Login!", {
                         user: user,
-                        token: "bearer " + token
+                        user_id: user.id,
+                        user_token: "bearer " + token
                     });
                 });
             }
