@@ -19,11 +19,10 @@ exports.login_user = (req, res, next) => {
             if(isMatch){
                 const payload = {id: user.id};
                 jwt.sign(payload, "keys", {expiresIn: "365d"}, (err, token) => {
-                    return res.status(200).json(true, 200, "Login!", {
+                    return res.status(200).json(vm.ApiResponse(true, 200, "Login!", {
                         user: user,
-                        user_id: user.id,
-                        user_token: "bearer " + token
-                    });
+                        user_token: "bearer" + token
+                    }));
                 });
             }
         });
