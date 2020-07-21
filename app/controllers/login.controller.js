@@ -19,7 +19,8 @@ exports.login_user = async(req, res, next) => {
                 jwt.sign(payload, "keys", { expiresIn: "365d" }, (err, token) => {
                     return res.status(200).json(vm.ApiResponse(true, 200, "login!", {
                         user: user,
-                        user_token: "bearer" + token
+                        user_token: "bearer" + token,
+                        user_id: user.id
                     }));
                 });
             }
