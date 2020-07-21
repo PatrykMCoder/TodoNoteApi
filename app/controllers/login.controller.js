@@ -5,6 +5,7 @@ const bcrypt =  require('bcrypt');
 const vm =  require('v-response');
 
 exports.login_user = (req, res, next) => {
+  console.log("Start");
   const email = req.body.email;
   const password = req.body.password;
 
@@ -27,4 +28,5 @@ exports.login_user = (req, res, next) => {
             }
         });
     });
+    console.log("Stop");
 };
