@@ -7,14 +7,11 @@ const { json } = require('body-parser');
 
 exports.login_user = async(req, res, next) => {
   console.log("Start");
-  const email = req.body.email;
-  const password = req.body.password;
-
-  await RegisterModel.findOne({email: email}) .then(user => {
+  await RegisterModel.findOne({email: req.body.email}).then(user => {
         if(!user)
-            return res.status(400).json(vm.json(false, 400, "Can't find user"));
+            return res.status(400).json(vm.ApiResponse(false, 400, "Can't find user"));
         
-        bcrypt.compare(password, user.password).then((isMatch) => {
+        bcrypt.compare(req.body.password, user.password).then((isMatch) => {
             if(!isMatch)
                 return res.status(400).json(false, 400, "Incorrect password, try again");
             if(isMatch){
@@ -27,9 +24,6 @@ exports.login_user = async(req, res, next) => {
                 });
             }
         })
-        .catch(error => {
-            return res.status(500).json(vm.ApiResponse(false, 500, 'error with login, try again ', error));
-        });
     });
     console.log("Stop");
 };
