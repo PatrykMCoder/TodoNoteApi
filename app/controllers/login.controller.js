@@ -5,13 +5,12 @@ const bcrypt =  require('bcrypt');
 const vm =  require('v-response');
 const { json } = require('body-parser');
 
-exports.login_user = (req, res, next) => {
+exports.login_user = async(req, res, next) => {
   console.log("Start");
   const email = req.body.email;
   const password = req.body.password;
 
-  await RegisterModel.findOne({email: email})  
-    .then(user => {
+  await RegisterModel.findOne({email: email}) .then(user => {
         if(!user)
             return res.status(400).json(vm.json(false, 400, "Can't find user"));
         
