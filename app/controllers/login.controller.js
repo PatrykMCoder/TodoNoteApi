@@ -10,7 +10,7 @@ exports.login_user = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  RegisterModel.findOne({email: email})  
+  await RegisterModel.findOne({email: email})  
     .then(user => {
         if(!user)
             return res.status(400).json(vm.json(false, 400, "Can't find user"));
