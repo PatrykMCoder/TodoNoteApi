@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const registerRoutes = require('./app/routes/register.routes');
 const loginRoutes = require('./app/routes/login.routes');
+const todoRoutes = require('./app/routes/todo.routes');
 const configHeroku = require('./app/config-heroku/config.database');
+const { use } = require('./app/routes/login.routes');
 const port = process.env.PORT || 4000;
 
 app = express();
@@ -24,6 +26,7 @@ app.use(bodyParser.urlencoded( {extended: true} ));
 
 app.use(registerRoutes);
 app.use(loginRoutes);
+app.use(todoRoutes);
 
 mongoose.connect(configHeroku.url)
 .then('DB CONNECTED');
