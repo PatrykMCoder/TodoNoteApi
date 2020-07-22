@@ -7,7 +7,7 @@ exports.create_user = async(req, res, next) => {
     console.log("start");
     await RegisterModel.findOne({email: req.body.email}).then(email_exist => {
         if(email_exist)
-            res.status(409).json(false, 409, 'email existing');
+            return res.status(409).json(false, 409, 'email existing');
         
         let registerBody = req.body;
         const newUser = new RegisterModel(registerBody);
