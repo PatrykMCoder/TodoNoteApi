@@ -26,9 +26,9 @@ exports.create_todo = async(req, res, next) => {
 exports.load_todos = async(req, res, next) => {
     await TodoModel.find({ user_id: ObjectId(req.params.user_id) }).then(todos => {
        if (!todos) 
-            return res.status(400).json(vm.ApiResponse(false, 400, 'Not find todos.'))
+            return res.status(400).json(vm.ApiResponse(false, 400, 'Not find todos.'));
        else 
-            return res.status(201).json(vm.ApiResponse(true, 201, 'Find.', todos))
+            return res.status(201).json(vm.ApiResponse(true, 201, 'Find.', todos));
     }).catch(error => {
         return res.status(500).json(vm.ApiResponse(false, 500, 'error with find todos, try again ', error));
     });
@@ -61,4 +61,15 @@ exports.edit_todo = async(req, res, next) => {
      }).catch(error => {
         return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
      });
+};
+
+exports.load_todo_data = async(req, res, next) => {
+    await TodoModel.find({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id) }).then(todos => {
+        if (!todos) 
+            return res.status(400).json(vm.ApiResponse(false, 400, 'Not find todos.'));
+        else 
+            return res.status(201).json(vm.ApiResponse(true, 201, 'Find todo.', todos));
+    }).catch(error => {
+        return res.status(500).json(vm.ApiResponse(false, 500, 'error with find todos, try again ', error));
+    });
 };
