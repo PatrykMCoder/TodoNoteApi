@@ -7,19 +7,22 @@ exports.create_todo = async(req, res, next) => {
         if(todo_exist)
             return res.status(409).json(vm.ApiResponse(false, 409, 'Title exist'));
         
-        let createTodoBody = req.body;
-        const newTodo = new TodoModel(createTodoBody);
-       
+        let title = req.body.title;
+        let todos = JSON.parse(req.body.todos);
+        let user_id = req.body.user_id;
+
+        const newTodo = new TodoModel({title: title, user_id: user_id, todos: todos});
+        console.log(newTodo);
         newTodo.save().then(saved => {
             if(!saved)
-                return res.status(400).json(vm.ApiResponse(false, 400, 'error with create todo, try again'));
+                return res.status(400).json(vm.ApiResponse(false, 400, 'error with create todo, try again!'));
             else
                 return res.status(201).json(vm.ApiResponse(true, 201, 'Todo created', saved));
         }).catch(error => {
             return res.status(500).json(vm.ApiResponse(false, 500, 'error with create todo, try again ', error));
         });
     }).catch(error => {
-        return res.status(500).json(vm.ApiResponse(false, 500, 'error with create todo, try again ', error));
+        return res.status(500).json(vm.ApiResponse(false, 500, 'error with create todo, try again!!', error));
     });
 };
 
