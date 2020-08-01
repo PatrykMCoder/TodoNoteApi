@@ -49,7 +49,10 @@ exports.delete_todo = async(req, res, next) => {
 };
 
 exports.edit_todo = async(req, res, next) => {
-    await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {todos: req.body.todos}, {new: true}).then(update => {
+   // let title = req.body.title;
+    let todos = JSON.parse(req.body.todos);
+
+    await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {todos: todos}, {new: true}).then(update => {
         if (!update)
             return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated', update));
         else
