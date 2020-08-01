@@ -38,24 +38,17 @@ exports.load_todos = async(req, res, next) => {
 };
 
 exports.delete_todo = async(req, res, next) => {
-    await TodoModel.find({ user_id: ObjectId(req.params.user_id)}).then(todo => {
-        if (!todo)
-            return res.status(400).json(vm.ApiResponse(false, 400, 'Not find todos.'));
+    await TodoModel.findByIdAndDelete({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}).then( del => {
+        if(!del)
+            return res.status(400).json(vm.ApiResponse(false, 400, 'Problem with delete'));
         else
-            todo.deleteOne({ _id: ObjectId(req.params.todo_id) }).then(del => {
-                if(!del)
-                    return res.status(400).json(vm.ApiResponse(false, 400, 'Problem with delete'));
-                else
-                    return res.status(201).json(vm.ApiResponse(true, 201, 'Find and delted'));
-            });
+            return res.status(201).json(vm.ApiResponse(true, 201, 'Find and delted'));
     }).catch(error => {
         return res.status(500).json(vm.ApiResponse(false, 500, 'error with find todos, try again ', error));
     });
 };
 
 exports.edit_todo = async(req, res, next) => {
-    let newData = req.body.todos;
-
     await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {todos: req.body.todos}, {new: true}).then(update => {
         if (!update)
             return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated', update));
