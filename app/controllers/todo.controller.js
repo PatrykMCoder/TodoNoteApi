@@ -72,3 +72,16 @@ exports.load_todo_data = async(req, res, next) => {
         return res.status(500).json(vm.ApiResponse(false, 500, 'error with find todos, try again ', error));
     });
 };
+
+exports.update_task_status = async(req, res, next) => {
+    let todos = JSON.parse(req.body.todos);
+
+    await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {todos: todos}, {new: true}).then(update => {
+        if (!update)
+            return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated', update));
+        else
+            return res.status(200).json(vm.ApiResponse(true, 201, 'Updated', update));
+     }).catch(error => {
+        return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
+     });
+}
