@@ -1,6 +1,7 @@
 const TodoModel = require('../models/todo.model');
 const vm =  require('v-response');
 const { ObjectId } = require('mongodb');
+const e = require('express');
 
 exports.create_todo = async(req, res, next) => {    
     await TodoModel.findOne({title: req.body.title, user_id: req.body.user_id}).then(todo_exist => {
@@ -10,8 +11,9 @@ exports.create_todo = async(req, res, next) => {
         let title = req.body.title;
         let todos = JSON.parse(req.body.todos);
         let user_id = req.body.user_id;
+        let tag = req.body.tag;
 
-        const newTodo = new TodoModel({title: title, user_id: user_id, todos: todos});
+        const newTodo = new TodoModel({title: title, user_id: user_id, tag: tag, todos: todos});
         console.log(newTodo);
         newTodo.save().then(saved => {
             if(!saved)
@@ -50,9 +52,10 @@ exports.delete_todo = async(req, res, next) => {
 
 exports.edit_todo = async(req, res, next) => {
    // let title = req.body.title;
+    let tag = req.body.tag;
     let todos = JSON.parse(req.body.todos);
 
-    await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {todos: todos}, {new: true}).then(update => {
+    await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {todos: todos, tag: tag}, {new: true}).then(update => {
         if (!update)
             return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated', update));
         else

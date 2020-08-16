@@ -10,6 +10,10 @@ const todoSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    tag: {
+        type: String,
+        require: true
+    },
     todos: [
         {
             task: {
