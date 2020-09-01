@@ -33,19 +33,18 @@ exports.edit_user = async(req, res, next) => {
                     }).catch(error => {
                         return res.status(500).json(vm.ApiResponse(false, 500, "User not updated, catch error"));
                     });
-                }
-                else {
+                } else {
                     bcrypt.hash(password, salt, (err, hash) => {
                         password = hash; 
-                    });
-                    
-                    UserModel.findOneAndUpdate({ _id: req.params.user_id }, { email: email, username: username, password: password }, {new: false}).then(user => {
-                        if(!user)
-                            return res.status(400).json(vm.ApiResponse(false, 400, "Can't update user data"));
-                        else
-                            return res.status(201).json(vm.ApiResponse(true, 201, "User updated", user));
-                    }).catch(error => {
-                        return res.status(500).json(vm.ApiResponse(false, 500, "User not updated, catch error"));;
+                        
+                        UserModel.findOneAndUpdate({ _id: req.params.user_id }, { email: email, username: username, password: password }, {new: false}).then(user => {
+                            if(!user)
+                                return res.status(400).json(vm.ApiResponse(false, 400, "Can't update user data"));
+                            else
+                                return res.status(201).json(vm.ApiResponse(true, 201, "User updated", user));
+                        }).catch(error => {
+                            return res.status(500).json(vm.ApiResponse(false, 500, "User not updated, catch error"));;
+                        });
                     });
                 }
             }
