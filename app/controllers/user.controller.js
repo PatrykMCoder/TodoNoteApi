@@ -34,10 +34,8 @@ exports.edit_user = async(req, res, next) => {
                         return res.status(500).json(vm.ApiResponse(false, 500, "User not updated, catch error"));
                     });
                 } else {
-                    bcrypt.hash(password, salt, (err, hash) => {
-                        password = hash; 
-                        
-                        UserModel.findOneAndUpdate({ _id: req.params.user_id }, { email: email, username: username, password: password }, {new: false}).then(user => {
+                    bcrypt.hash(password, salt, (err, hash) => {     
+                        UserModel.findOneAndUpdate({ _id: req.params.user_id }, { email: email, username: username, password: hash }, {new: false}).then(user => {
                             if(!user)
                                 return res.status(400).json(vm.ApiResponse(false, 400, "Can't update user data"));
                             else
