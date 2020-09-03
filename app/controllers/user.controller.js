@@ -19,6 +19,13 @@ exports.edit_user = async(req, res, next) => {
     const email_new = req.body.email_new;
     const username = req.body.username;
     const password = req.body.password;
+    
+    let email;
+    if (email_new) {
+        email = email_new;
+    } else {
+        email = email_old;
+    }
 
     await UserModel.findOne({ email: email_old }).then(find => {
         if(find) {
@@ -26,13 +33,6 @@ exports.edit_user = async(req, res, next) => {
                 return res.status(409).json(vm.ApiResponse(false, 409, "Can't update user, email exist"));
             else {
                 if(!password){
-                    let email;
-                    if (email_new) {
-                        email = email_new;
-                    } else {
-                        email = email_old;
-                    }
-
                     UserModel.findOneAndUpdate({ _id: req.params.user_id }, { email: email, username: username }, {new: false}).then(user => {
                         if(!user)
                             return res.status(400).json(vm.ApiResponse(false, 400, "Can't update user data"));
