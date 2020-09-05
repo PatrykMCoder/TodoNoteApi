@@ -12,6 +12,10 @@ const userSchema  = mongoose.Schema({
     password:{
         type: String,
         required: true
+    },
+    accept_pricacy: {
+        type: String,
+        required: true
     }
 });
 
