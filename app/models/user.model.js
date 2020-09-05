@@ -13,7 +13,7 @@ const userSchema  = mongoose.Schema({
         type: String,
         required: true
     },
-    accept_pricacy: {
+    accept_privacy: {
         type: String,
         required: true
     }
