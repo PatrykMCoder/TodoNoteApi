@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const registerRoutes = require('./app/routes/register.routes');
 const loginRoutes = require('./app/routes/login.routes');
 const todoRoutes = require('./app/routes/todo.routes');
+const tagRoutes = require('./app/routes/tag.routes');
 const userRoutes = require('./app/routes/user.routes');
 const configHeroku = require('./app/config-heroku/config.database');
 const { use } = require('./app/routes/login.routes');
@@ -29,6 +30,7 @@ app.use(registerRoutes);
 app.use(loginRoutes);
 app.use(todoRoutes);
 app.use(userRoutes);
+app.use(tagRoutes);
 
 mongoose.connect(configHeroku.url)
 .then('DB CONNECTED');
