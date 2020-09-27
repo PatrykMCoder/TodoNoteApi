@@ -14,7 +14,6 @@ exports.create_todo = async(req, res, next) => {
         let tag = req.body.tag;
 
         const newTodo = new TodoModel({title: title, user_id: user_id, tag: tag, todos: todos});
-        console.log(newTodo);
         newTodo.save().then(saved => {
             if(!saved)
                 return res.status(400).json(vm.ApiResponse(false, 400, 'error with create todo, try again!'));
