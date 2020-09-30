@@ -85,4 +85,17 @@ exports.update_task_status = async(req, res, next) => {
      }).catch(error => {
         return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
      });
-}
+};
+
+exports.archive_operation = async(req, res, next) => {
+    let archive = req.body.archive;
+    
+    await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {archive: archive}, {new: true}).then(update => {
+        if (!update)
+            return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated', update));
+        else
+            return res.status(200).json(vm.ApiResponse(true, 201, 'Updated', update));
+    }).catch(error => {
+        return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
+     });;
+};
