@@ -14,6 +14,10 @@ const todoSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    archive: {
+        type: Boolean,
+        default: false
+    },
     todos: [
         {
             task: {
