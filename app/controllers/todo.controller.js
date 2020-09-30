@@ -91,6 +91,7 @@ exports.archive_operation = async(req, res, next) => {
     let archive = JSON.parse(req.body.archive);
     
     await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {archive: archive}, {new: true}).then(update => {
+        console.log(archive);
         if (!update)
             return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated', update));
         else
