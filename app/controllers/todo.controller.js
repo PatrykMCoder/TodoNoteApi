@@ -88,7 +88,7 @@ exports.update_task_status = async(req, res, next) => {
 };
 
 exports.archive_operation = async(req, res, next) => {
-    let archive = req.body.archive;
+    let archive = JSON.parse(req.body.archive);
     
     await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {archive: archive}, {new: true}).then(update => {
         console.log(archive);
