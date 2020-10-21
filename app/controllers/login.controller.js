@@ -6,7 +6,6 @@ const vm =  require('v-response');
 const { json } = require('body-parser');
 
 exports.login_user = async(req, res, next) => {
-  console.log("Start");
   await RegisterModel.findOne({email: req.body.email}).then(user => {
         if(!user)
             return res.status(400).json(vm.ApiResponse(false, 400, "Can't find user"));
@@ -26,5 +25,4 @@ exports.login_user = async(req, res, next) => {
             }
         })
     });
-    console.log("Stop");
 };
