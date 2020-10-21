@@ -16,7 +16,6 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type");
-    res.setHeader("Content-Type", "application/json; charset=utf-8");
     next();
 });
 
@@ -26,6 +25,7 @@ app.get('/', (req, res) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extended: true} ));
+app.use(bodyParser.text({defaultCharset: 'utf-8'}));
 
 app.use(registerRoutes);
 app.use(loginRoutes);
