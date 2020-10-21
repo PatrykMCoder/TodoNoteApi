@@ -14,7 +14,7 @@ const userSchema  = mongoose.Schema({
         required: true
     },
     accept_privacy: {
-        type: String,
+        type: Boolean,
         required: true
     }
 });
