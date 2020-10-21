@@ -5,6 +5,7 @@ const e = require('express');
 
 exports.create_todo = async(req, res, next) => {    
     await TodoModel.findOne({title: req.body.title, user_id: req.body.user_id}).then(todo_exist => {
+        res.setEncoding('utf8');
         if(todo_exist)
             return res.status(409).json(vm.ApiResponse(false, 409, 'Title exist'));
         
