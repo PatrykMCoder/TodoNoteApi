@@ -59,7 +59,7 @@ exports.edit_todo = async(req, res, next) => {
         else
             return res.status(200).json(vm.ApiResponse(true, 201, 'Updated', update));
      }).catch(error => {
-        return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
+        return res.status(500).json(vm.ApiResponse(false, 500, 'Not updated: ', error));
      });
 };
 
@@ -83,7 +83,7 @@ exports.update_task_status = async(req, res, next) => {
         else
             return res.status(200).json(vm.ApiResponse(true, 201, 'Updated', update));
      }).catch(error => {
-        return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
+        return res.status(500).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
      });
 };
 
@@ -96,6 +96,6 @@ exports.archive_operation = async(req, res, next) => {
         else
             return res.status(200).json(vm.ApiResponse(true, 201, 'Updated', update));
     }).catch(error => {
-        return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
+        return res.status(500).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
      });;
 };
