@@ -12,6 +12,7 @@ Required data: `email, password`</br>
 Path: POST `/login`
 
 When user is successful login return code `200` and user data. If user enter bad data or user is not found return code `400` with error message.
+Attention! Password and userid  are not loaded!
 
 ## Register User
 
@@ -96,9 +97,7 @@ Required data: `user id`
 Path: GET `/user/:user_id`
 
 When user is found return code 201 with user data. When user is not found return code 400 with information message. When is problem with found data return code 500 with error message.
-<p style='color:red'>
-    Attention! Password and userid  are not loaded!
-</p>
+Attention! Password and userid  are not loaded!
 
 ## Edit user data
 
