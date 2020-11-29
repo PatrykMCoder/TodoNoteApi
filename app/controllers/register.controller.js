@@ -16,8 +16,9 @@ exports.create_user = async(req, res, next) => {
                 newUser.save().then(saved => {
                     if(!saved)
                         return res.status(400).json(vm.ApiResponse(false, 400, 'error with create account, try again'));
-                    else
-                        return res.status(201).json(vm.ApiResponse(true, 201, 'Account created ', saved));
+                    else {
+                        return res.status(201).json(vm.ApiResponse(true, 201, 'Account created '));
+                    }
                 }).catch(error => {
                     return res.status(500).json(vm.ApiResponse(false, 500, 'error with create account, try again ', error));
                 });

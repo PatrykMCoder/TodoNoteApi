@@ -33,6 +33,11 @@ app.use(todoRoutes);
 app.use(userRoutes);
 app.use(tagRoutes);
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+
 mongoose.connect(configHeroku.url)
 .then('DB CONNECTED');
 
