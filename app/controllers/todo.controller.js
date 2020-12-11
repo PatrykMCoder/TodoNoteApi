@@ -9,7 +9,7 @@ exports.create_todo = async(req, res, next) => {
             return res.status(409).json(vm.ApiResponse(false, 409, 'Title exist'));
         
         let title = req.body.title;
-        let todos = JSON.parse(req.body.todos);
+        let todos = JSON.parse(req.body.todos.filter(item => item));
         let user_id = req.body.user_id;
         let tag = req.body.tag;
 
@@ -52,8 +52,8 @@ exports.delete_todo = async(req, res, next) => {
 exports.edit_todo = async(req, res, next) => {
     let title = req.body.title;
     let tag = req.body.tag;
-    let todos = JSON.parse(req.body.todos);
-
+    let todos = JSON.parse(req.body.todos.filter(item => item));
+ 
     await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {title: title, todos: todos, tag: tag}, {new: true}).then(update => {
         if (!update)
             return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated', update));
