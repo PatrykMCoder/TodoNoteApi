@@ -7,8 +7,10 @@ const todoRoutes = require('./app/routes/todo.routes');
 const tagRoutes = require('./app/routes/tag.routes');
 const userRoutes = require('./app/routes/user.routes');
 const configHeroku = require('./app/config-heroku/config.database');
+const configLocal = require('./app/config-local/config.database');
 const { use } = require('./app/routes/login.routes');
 const port = process.env.PORT || 4000;
+const os = require('os');
 
 app = express();
 
@@ -38,8 +40,14 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-mongoose.connect(configHeroku.url)
-.then('DB CONNECTED');
+if(process.env.NODE_ENV === 'development') {
+    mongoose.connect(configLocal.url)
+    .then(console.log('DB LOCAL CONNECTED'));
+    
+}else{
+    mongoose.connect(configHeroku.url)
+    .then(console.log('DB CONNECTED'));
+}
 
 app.listen(port, console.log('app start on port ', port));
 
