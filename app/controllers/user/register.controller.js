@@ -1,4 +1,4 @@
-const RegisterModel = require('../models/user.model');
+const RegisterModel = require('../../models/user/user.model');
 
 const bcrypt =  require('bcrypt');
 const vm =  require('v-response');

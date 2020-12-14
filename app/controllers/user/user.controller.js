@@ -1,4 +1,4 @@
-const UserModel = require('../models/user.model');
+const UserModel = require('../../models/user/user.model');
 const vm = require('v-response');
 const bcrypt =  require('bcrypt');
 

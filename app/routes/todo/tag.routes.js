@@ -1,5 +1,5 @@
 const express = require('express');
-const tagController = require('../controllers/tag.controller');
+const tagController = require('../../controllers/todo/tag.controller');
 
 const router = express.Router();
 

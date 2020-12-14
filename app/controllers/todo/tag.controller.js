@@ -1,4 +1,4 @@
-const TagModel = require('../models/tag.model');
+const TagModel = require('../../models/todo/tag.model');
 const vm = require('v-response');
 const { ObjectId } = require('mongodb');
 

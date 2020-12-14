@@ -1,14 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const registerRoutes = require('./app/routes/register.routes');
-const loginRoutes = require('./app/routes/login.routes');
-const todoRoutes = require('./app/routes/todo.routes');
-const tagRoutes = require('./app/routes/tag.routes');
-const userRoutes = require('./app/routes/user.routes');
+const registerRoutes = require('./app/routes/user/register.routes');
+const loginRoutes = require('./app/routes/user/login.routes');
+const todoRoutes = require('./app/routes/todo/todo.routes');
+const tagRoutes = require('./app/routes/todo/tag.routes');
+const userRoutes = require('./app/routes/user/user.routes');
+const noteRoutes =  require('./app/routes/note/note.routes');
 const configHeroku = require('./app/config-heroku/config.database');
 const configLocal = require('./app/config-local/config.database');
-const { use } = require('./app/routes/login.routes');
 const port = process.env.PORT || 4000;
 const os = require('os');
 const path = require('path');
@@ -37,6 +37,7 @@ app.use(loginRoutes);
 app.use(todoRoutes);
 app.use(userRoutes);
 app.use(tagRoutes);
+app.use(noteRoutes);
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
