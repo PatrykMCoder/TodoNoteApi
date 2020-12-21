@@ -11,6 +11,7 @@ const configLocal = require('./app/config-local/config.database');
 const { use } = require('./app/routes/login.routes');
 const port = process.env.PORT || 4000;
 const os = require('os');
+const path = require('path');
 
 app = express();
 
@@ -28,6 +29,8 @@ app.get('/', (req, res) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extended: true} ));
 app.use(bodyParser.text({defaultCharset: 'utf-8'}));
+
+app.use('/public', express.static(__dirname + '/app/public') );
 
 app.use(registerRoutes);
 app.use(loginRoutes);
