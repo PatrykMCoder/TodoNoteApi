@@ -12,8 +12,9 @@ exports.create_todo = async(req, res, next) => {
         let todos = JSON.parse(req.body.todos);
         let user_id = req.body.user_id;
         let tag = req.body.tag;
+        let color = req.body.color;
 
-        const newTodo = new TodoModel({title: title, user_id: user_id, tag: tag, todos: todos});
+        const newTodo = new TodoModel({title: title, user_id: user_id, tag: tag, todos: todos, color: color});
         newTodo.save().then(saved => {
             if(!saved)
                 return res.status(400).json(vm.ApiResponse(false, 400, 'error with create todo, try again!'));
@@ -53,8 +54,9 @@ exports.edit_todo = async(req, res, next) => {
     let title = req.body.title;
     let tag = req.body.tag;
     let todos = JSON.parse(req.body.todos);
+    let color = req.body.color;
 
-    await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {title: title, todos: todos, tag: tag}, {new: true}).then(update => {
+    await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {title: title, todos: todos, tag: tag, color: color}, {new: true}).then(update => {
         if (!update)
             return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated', update));
         else
@@ -99,4 +101,17 @@ exports.archive_operation = async(req, res, next) => {
     }).catch(error => {
         return res.status(500).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
      });;
+};
+
+// exports.color_operation= async(req, res, next) => {
+//     let color = req.body.color;
+
+//     await TodoModel.findByIdAndUpdate({ user_id: ObjectId(req.params.user_id), _id: ObjectId(req.params.todo_id)}, {color: color}, {new: true}).then(update => {
+//         if (!update)
+//             return res.status(400).json(vm.ApiResponse(false, 400, 'Not updated', update));
+//         else
+//             return res.status(200).json(vm.ApiResponse(true, 201, 'Updated', update));
+//     }).catch(error => {
+//         return res.status(500).json(vm.ApiResponse(false, 400, 'Not updated: ', error));
+//      });
 };

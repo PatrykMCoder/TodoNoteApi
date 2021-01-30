@@ -11,5 +11,6 @@ router.put('/todos/:user_id/:todo_id', todoController.edit_todo);
 router.put('/todos/status/:user_id/:todo_id', todoController.update_task_status);
 router.put('/todos/archive/:user_id/:todo_id/', todoController.archive_operation);
 
+// router.put('/todos/color/:user_id/:todo_id/', todoController.color_operation);
 
 module.exports = router;

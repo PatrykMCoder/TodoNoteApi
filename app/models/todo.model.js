@@ -14,6 +14,11 @@ const todoSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    color: {
+        type: String,
+        require: true,
+        default: "#ffffff"
+    },
     archive: {
         type: Boolean,
         default: false
