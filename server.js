@@ -43,11 +43,11 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-if(process.env.NODE_ENV === 'development') {
+if ((process.env.NODE_ENV || '').trim() !== 'production') {
     mongoose.connect(configLocal.url)
     .then(console.log('DB LOCAL CONNECTED'));
     
-}else{
+}else {
     mongoose.connect(configHeroku.url)
     .then(console.log('DB CONNECTED'));
 }
