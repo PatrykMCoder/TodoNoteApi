@@ -8,7 +8,7 @@ const { json } = require('body-parser');
 exports.login_user = async(req, res, next) => {
   await UserModel.findOne({email: req.body.email}).then(user => {
         if(!user)
-            return res.status(400).json(vm.ApiResponse(false, 400, "Can't find user"));
+            return res.status(400).json(vm.ApiResponse(false, 400, "Incorrect data, try again"));
         
         bcrypt.compare(req.body.password, user.password).then((isMatch) => {
             if(!isMatch)
