@@ -47,7 +47,7 @@ if ((process.env.NODE_ENV || '').trim() !== 'production') {
     .then(console.log('DB LOCAL CONNECTED'));
     
 }else {
-    mongoose.connect(process.env.url)
+    mongoose.connect(process.env.mdb-url)
     .then(console.log('DB CONNECTED'));
 }
 
