@@ -6,7 +6,6 @@ const loginRoutes = require('./app/routes/login.routes');
 const todoRoutes = require('./app/routes/todo.routes');
 const tagRoutes = require('./app/routes/tag.routes');
 const userRoutes = require('./app/routes/user.routes');
-const configHeroku = require('./app/config-heroku/config.database');
 const configLocal = require('./app/config-local/config.database');
 const { use } = require('./app/routes/login.routes');
 const port = process.env.PORT || 4000;
@@ -48,7 +47,7 @@ if ((process.env.NODE_ENV || '').trim() !== 'production') {
     .then(console.log('DB LOCAL CONNECTED'));
     
 }else {
-    mongoose.connect(configHeroku.url)
+    mongoose.connect(process.env.url)
     .then(console.log('DB CONNECTED'));
 }
 
