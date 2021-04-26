@@ -13,7 +13,6 @@ exports.login_user = async(req, res, next) => {
         secretCode = configAuth.secret;
         expiresIn = configAuth.expiresIn;
     } else {
-        console.log("here, is good.");
         secretCode = process.env.secretcodetoken;
         expiresIn = process.env.expiresintoken;
     }
