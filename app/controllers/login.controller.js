@@ -15,10 +15,8 @@ exports.login_user = async(req, res, next) => {
     } else {
         secretCode = process.env.secretcodetoken;
         expiresIn = process.env.expiresintoken;
-
-        console.log(expiresIn);
     }
-
+    console.log(expiresIn);
   await UserModel.findOne({email: req.body.email}).then(user => {
         if(!user)
             return res.status(400).json(vm.ApiResponse(false, 400, "Incorrect data, try again"));
