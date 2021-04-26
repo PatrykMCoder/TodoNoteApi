@@ -15,6 +15,8 @@ exports.login_user = async(req, res, next) => {
     } else {
         secretCode = process.env.secretcodetoken;
         expiresIn = process.env.expiresintoken;
+
+        console.log(expiresIn);
     }
 
   await UserModel.findOne({email: req.body.email}).then(user => {
