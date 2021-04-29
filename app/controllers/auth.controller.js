@@ -5,10 +5,11 @@ module.exports = {
     checkToken: function(token) {
         let secretCode = '';
         
-        if (((process.env.NODE_ENV || '').trim() !== 'production')) {
-            secretCode = configAuth.secret;
-        } else {
+        if (((process.env.NODE_ENV || '').trim() === 'production')) {
+            console.log('here');
             secretCode = process.env.secretcodetoken;
+        } else {
+            secretCode = configAuth.secret;
         }
 
         let myValue = {};

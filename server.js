@@ -42,12 +42,11 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
-if ((process.env.NODE_ENV || '').trim() !== 'production') {
-    mongoose.connect(configLocal.url)
-    .then(console.log('DB LOCAL CONNECTED'));
-    
-}else {
+if ((process.env.NODE_ENV || '').trim() === 'production') {
     mongoose.connect(process.env.mdburl)
+    .then(console.log('DB CONNECTED'));    
+}else {
+    mongoose.connect(configLocal.url)
     .then(console.log('DB CONNECTED'));
 }
 
