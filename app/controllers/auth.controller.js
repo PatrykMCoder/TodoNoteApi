@@ -6,7 +6,6 @@ module.exports = {
         let secretCode = '';
         
         if (((process.env.NODE_ENV || '').trim() === 'production')) {
-            console.log('here');
             secretCode = process.env.secretcodetoken;
         } else {
             secretCode = configAuth.secret;
