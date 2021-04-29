@@ -5,7 +5,7 @@ module.exports = {
     checkToken: function(token) {
         let secretCode = '';
         
-        if (((process.env.NODE_ENV || '').trim() === 'production')) {
+        if ((process.env.NODE_ENV || '').trim() === 'production') {
             secretCode = process.env.secretcodetoken;
         } else {
             secretCode = configAuth.secret;
