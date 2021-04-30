@@ -117,5 +117,4 @@ dist
 
 # secret config
 app/config
-app/config-auth/config.js
-app\config-local\config.database.js
+
