@@ -1,7 +1,5 @@
 const TagModel = require('../models/tag.model');
 const vm = require('v-response');
-const jwt = require('jsonwebtoken');
-const configAuth = require('../config-auth/config');
 const auth = require('../controllers/auth.controller');
 
 exports.create_tag = async(req, res, next) => {

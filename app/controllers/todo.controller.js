@@ -2,9 +2,7 @@ const TodoModel = require('../models/todo.model');
 const vm =  require('v-response');
 const e = require('express');
 const jwt = require('jsonwebtoken');
-const configAuth = require('../config-auth/config');
 const auth = require('../controllers/auth.controller');
-const { Mongoose } = require('mongoose');
 
 exports.create_todo = async(req, res, next) => {
     const token = req.headers['x-access-token'];

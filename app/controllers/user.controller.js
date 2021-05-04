@@ -1,8 +1,6 @@
 const UserModel = require('../models/user.model');
 const vm = require('v-response');
 const bcrypt =  require('bcrypt');
-const jwt = require('jsonwebtoken');
-const configAuth = require('../config-auth/config');
 const auth = require('../controllers/auth.controller');
 
 exports.get_user_data = async(req, res, next) => {

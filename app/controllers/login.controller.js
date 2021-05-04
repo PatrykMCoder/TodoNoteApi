@@ -3,18 +3,18 @@ const UserModel = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const bcrypt =  require('bcrypt');
 const vm =  require('v-response');
-const  configAuth  = require('../config-auth/config');
+const configAuth  = require('../config-auth/config');
 
 exports.login_user = async(req, res, next) => {
     let secretCode;
     let expiresIn;
         
-    if (((process.env.NODE_ENV || '').trim() !== 'production')) {
-        secretCode = configAuth.secret;
-        expiresIn = configAuth.expiresIn;
-    } else {
+    if (((process.env.NODE_ENV || '').trim() === 'production')) {
         secretCode = process.env.secretcodetoken;
         expiresIn = process.env.expiresintoken;
+    } else {
+        secretCode = configAuth.secret;
+        expiresIn = configAuth.expiresIn;
     }
 
   await UserModel.findOne({email: req.body.email}).then(user => {
