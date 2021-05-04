@@ -10,7 +10,6 @@ exports.login_user = async(req, res, next) => {
     let expiresIn;
         
     if (((process.env.NODE_ENV || '').trim() === 'production')) {
-        console.log('here');
         secretCode = process.env.secretcodetoken;
         expiresIn = process.env.expiresintoken;
     } else {
