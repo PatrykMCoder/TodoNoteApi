@@ -117,4 +117,5 @@ dist
 
 # secret config
 app/config
-
+app/config-auth
+app/config-local
