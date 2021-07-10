@@ -114,8 +114,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# secret config
-app/config
-app/config-auth
-app/config-local

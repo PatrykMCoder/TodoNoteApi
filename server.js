@@ -44,7 +44,7 @@ mongoose.set('useUnifiedTopology', true);
 
 if ((process.env.NODE_ENV || '').trim() === 'production') {
     mongoose.connect(process.env.mdburl)
-    .then(console.log('DB CONNECTED'));    
+    .then(console.log('DB SERVER CONNECTED'));    
 }else {
     mongoose.connect(configLocal.url)
     .then(console.log('DB CONNECTED'));
