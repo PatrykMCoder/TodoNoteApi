@@ -7,10 +7,7 @@ const todoRoutes = require('./app/routes/todo.routes');
 const tagRoutes = require('./app/routes/tag.routes');
 const userRoutes = require('./app/routes/user.routes');
 const configLocal = require('./app/config-local/config.database');
-const { use } = require('./app/routes/login.routes');
 const port = process.env.PORT || 4000;
-const os = require('os');
-const path = require('path');
 
 app = express();
 

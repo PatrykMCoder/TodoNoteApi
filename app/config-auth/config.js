@@ -1,4 +1,4 @@
 module.exports = {
-    'secret': '',
-    'expiresIn':0
+    'secret': 'jkdhjkasdhkjasdhkjasdhjasdhkjasdhas',
+    'expiresIn':1231312
 }
