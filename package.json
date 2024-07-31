@@ -20,7 +20,7 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
-    "mongoose": "^5.12.5",
+    "mongoose": "^5.13.20",
     "mongoosen": "^1.0.4",
     "path": "^0.12.7",
     "v-response": "^1.1.0"
